@@ -36,6 +36,25 @@ void draw(){
     text("FACT #1", width/4, height/6 + 100);
     text("FACT #2", width/4, height/6 + 200);
     text("Visual Graphic", width/4, height/6 + 300);
+  } else if (displayMode == 4){
+    background(100); 
+    fill(0,153,153,120);
+    rect(80, 40, width-200, 300, 7);
+    String[] lines = loadStrings("tusk.txt");
+    fill(255);
+    //textSize(32);
+    PFont header = createFont("Arial Bold", 30);
+    PFont font = createFont("Arial", 24);
+    textFont(header);
+    for (int i = 0 ; i < lines.length; i++) {
+      if (i==0){
+        text(lines[i], width/2 - 50, height/6);
+        textFont(font);
+      }
+      else{
+        text(lines[i], 100, height/6 + 40*i);
+      }      
+    }
   }
 }
 
@@ -62,6 +81,8 @@ void keyPressed() {
     displayMode = 6;
   }
   System.out.println("Display Mode " + displayMode + "\n");
+   
+
 }
 
 void mouseClicked(){

@@ -35,7 +35,7 @@ void setup() {
   noStroke();
   s = loadShape("../../data/testHippo4.obj");
   
-  cam = new PeasyCam(this, 100);
+  cam = new PeasyCam(this,-60, 0, 0, 100); // Centered around object not origin
   cam.setMinimumDistance(150);
   cam.setMaximumDistance(5000);
   
@@ -61,11 +61,24 @@ void draw()
   rotateX(-.5);
   rotateY(-.5);
   
-  pushMatrix();
   shape(s);
-  popMatrix();
-     
   //drawAxes(1110.0); // To show the axes
+  
+  pushMatrix();
+  translate(-240,-120,10);
+  fill(0,255,255,60);
+  sphere(25);
+  popMatrix();
+  
+  
+  pushMatrix();
+  translate(10,-50,20);
+  fill(0,255,255,60);
+  sphere(25);
+  popMatrix();
+  
+     
+  
 
   //nya.drawBackground(cam);
   //if((!nya.isExist(0))){ return; }
@@ -74,6 +87,11 @@ void draw()
   //translate(0,0,20);
   //box(40);
   //nya.endTransform();
+}
+
+void mouseClicked(){
+  println("X: " + mouseX, "Y: " + mouseY); 
+
 }
 
 void drawAxes(float size){

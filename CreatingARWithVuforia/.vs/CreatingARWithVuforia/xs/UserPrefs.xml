@@ -1,0 +1,29 @@
+﻿<Properties StartupConfiguration="{F77D9BAE-50F0-E351-EB07-59481695B917}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/NewMonoBehaviour.cs">
+    <Files>
+      <File FileName="Assets/Scripts/CustomVuforiaButton.cs" Line="1" Column="1" />
+      <File FileName="Assets/soundCon.cs" Line="34" Column="50" />
+      <File FileName="Assets/Scripts/NewMonoBehaviour.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="CreatingARWithVuforia" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Scripts" expanded="True">
+                <Node name="NewMonoBehaviour.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="b12e9e3a-d7a1-4185-aade-1c03cb0bd0f3" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

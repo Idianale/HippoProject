@@ -12,6 +12,7 @@ public class touchCon : MonoBehaviour, IPointerClickHandler
     string btnName;
     public Material[] materials;
     [SerializeField] private Image journalImg;
+    [SerializeField] private Button cancelBut;
     //public string txtFile = "intro";
     string txtContents;
     // Start is called before the first frame update
@@ -23,7 +24,10 @@ public class touchCon : MonoBehaviour, IPointerClickHandler
         Debug.Log("Start");
         myAudioSource = GetComponent<AudioSource>();
         journalImg.enabled = false;
-        
+        cancelBut.enabled = false;
+        cancelBut.gameObject.SetActive(false);
+        cancelBut.onClick.AddListener(TaskOnClick);
+
         style.normal.textColor = Color.black;
         TextAsset txtAssets = (TextAsset)Resources.Load("test");
         Debug.Log("Text: " + txtAssets.text);
@@ -42,20 +46,15 @@ public class touchCon : MonoBehaviour, IPointerClickHandler
                 btnName = Hit.transform.name;
                 switch (btnName)
                 {
-                    case "Sphere":
+                    case "gem_17":
                         //myAudioSource.clip = aClips[0];
                         //myAudioSource.Play();
                         Hit.transform.GetComponent<Renderer>().material.color = Color.red;
-                        Debug.Log("Touched sphere");
-                        break;
-                    case "gem_17":
-                        Hit.transform.GetComponent<Renderer>().material.color = Color.red;
                         journalImg.enabled = true;
+                        cancelBut.enabled = true;
+                        cancelBut.gameObject.SetActive(true);
                         diamondTouched = true;
                         Debug.Log("Touched diamond");
-                        break;
-                    case "Journal":
-                        journalImg.enabled = false;
                         break;
                     default:
                         break;
@@ -82,4 +81,13 @@ public class touchCon : MonoBehaviour, IPointerClickHandler
         journalImg.enabled = false;   
         
     }
+
+    void TaskOnClick()
+    {
+        cancelBut.gameObject.SetActive(false);
+        cancelBut.enabled = false;
+        journalImg.enabled = false;
+        diamondTouched = false;
+    }
+
 }

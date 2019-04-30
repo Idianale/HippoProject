@@ -24,7 +24,7 @@ public class loadTxt : MonoBehaviour
     {
         style.fontSize = 30;
         style.wordWrap = true;
-        GUILayout.BeginArea(new Rect(Screen.width/2+25, 25, Screen.width/2-10, Screen.height-25));
+        GUILayout.BeginArea(new Rect(Screen.width/2+25, 100, Screen.width/2-100, Screen.height-75));
         GUILayout.Label(txtContents, style);
         GUILayout.EndArea();
     }

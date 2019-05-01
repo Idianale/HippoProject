@@ -594,8 +594,7 @@ MonoBehaviour:
   - secondary_scans
   - missing_hippo_profiles
   - possible_deaths
-  txtFile:
-  - intro
+  txtFiles:
   - whole_bottom_jaw_mandible
   - condyle
   - coronoid_process
@@ -604,9 +603,6 @@ MonoBehaviour:
   - foramina
   - canines
   - incisor
-  - secondary_scans
-  - missing_hippo_profiles
-  - possible_deaths
 --- !u!1 &502375261
 GameObject:
   m_ObjectHideFlags: 0

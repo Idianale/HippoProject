@@ -23,7 +23,7 @@ public class touchCon : MonoBehaviour
     bool[] diamondTouched = new bool[8];
     bool showIntro = true; 
     void Start()
-    {
+    { 
         Debug.Log("Start"); 
         myAudioSource = GetComponent<AudioSource>();
         journalImg.enabled = true;
@@ -88,20 +88,60 @@ public class touchCon : MonoBehaviour
         {
             if (diamondTouched[i])
             {
-                style.fontSize = 30;
                 style.wordWrap = true;
+                style.fontStyle = FontStyle.Bold;
+
+                string[] lines = txtContents[i].Split(new[] { '\n' });
+                string title = lines[0];
+                style.fontSize = 30;
+                int index = txtContents[i].IndexOf(System.Environment.NewLine);
+                string textBody = txtContents[i].Substring(index + System.Environment.NewLine.Length);
+                Debug.Log("body: " + textBody);
+
                 GUILayout.BeginArea(new Rect(Screen.width / 2 + 25, 100, Screen.width / 2 - 125, Screen.height - 75));
-                GUILayout.Label(txtContents[i], style);
+                GUILayout.Label(title, style);
+                //add empty line between title and body
+                GUILayout.Label(lines[1], style);
+
+               for (int j=2; j<lines.Length; j++)
+                {
+                    if (j==2)
+                    {
+                        style.fontStyle = FontStyle.Italic;
+                    }
+                    else if (lines[j-1].Trim().Length == 0)
+                    {
+                        style.fontStyle = FontStyle.Italic;
+                    }
+                    else
+                    {
+                        style.fontStyle = FontStyle.Normal;
+                    }
+                    GUILayout.Label(lines[j], style);
+                }
+
+               // style.fontStyle = FontStyle.Normal;
+                //GUILayout.Label(textBody, style);
                 GUILayout.EndArea();
             }
             if (showIntro)
             {
-                style.fontSize = 30;
                 style.wordWrap = true;
+                style.fontStyle = FontStyle.Bold;
+
+                string[] lines =introText.Split(new[] { '\n' });
+                string title = lines[0];
+                style.fontSize = 30;
+                int index = introText.IndexOf(System.Environment.NewLine);
+                string textBody = introText.Substring(index + System.Environment.NewLine.Length);
+                Debug.Log("body: " + textBody);
+
                 GUILayout.BeginArea(new Rect(Screen.width / 2 + 25, 100, Screen.width / 2 - 125, Screen.height - 75));
-                GUILayout.Label(introText, style);
+                GUILayout.Label(title, style);
+                style.fontStyle = FontStyle.Normal;
+                GUILayout.Label(textBody, style);
                 GUILayout.EndArea();
-            }
+            } 
         }
        
     }

@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class touchCon : MonoBehaviour, IPointerClickHandler
+public class touchCon : MonoBehaviour
 {
     public AudioClip[] aClips;
     public AudioSource myAudioSource;
@@ -13,25 +13,35 @@ public class touchCon : MonoBehaviour, IPointerClickHandler
     public Material[] materials;
     [SerializeField] private Image journalImg;
     [SerializeField] private Button cancelBut;
-    //public string txtFile = "intro";
-    string txtContents;
+    public string[] otherFiles = {"intro", "secondary_scans", "missing_hippo_profiles", "possible_deaths" };
+    public string[] txtFiles = { "whole_bottom_jaw_mandible", "condyle", "coronoid_process", "molars", "pre_molars", "foramina", "canines", "incisor" };
+    string[] txtContents = new string[8];
+    string introText;
     // Start is called before the first frame update
     GUIStyle style = new GUIStyle();
     // Start is called before the first frame update
-    bool diamondTouched = false;
+    bool[] diamondTouched = new bool[8];
+    bool showIntro = true; 
     void Start()
     {
-        Debug.Log("Start");
+        Debug.Log("Start"); 
         myAudioSource = GetComponent<AudioSource>();
-        journalImg.enabled = false;
-        cancelBut.enabled = false;
-        cancelBut.gameObject.SetActive(false);
+        journalImg.enabled = true;
+        cancelBut.enabled = true;
+        cancelBut.gameObject.SetActive(true);
         cancelBut.onClick.AddListener(TaskOnClick);
 
         style.normal.textColor = Color.black;
-        TextAsset txtAssets = (TextAsset)Resources.Load("test");
-        Debug.Log("Text: " + txtAssets.text);
-        txtContents = txtAssets.text;
+        TextAsset txtAssets = (TextAsset)Resources.Load("intro");
+        introText = txtAssets.text;
+        for (int i=0; i<txtFiles.Length; i++)
+        {
+            txtAssets = (TextAsset)Resources.Load(txtFiles[i]);
+            Debug.Log("Text: " + txtAssets.text);
+            txtContents[i] = txtAssets.text;
+            diamondTouched[i] = false; 
+        }
+        
     }
 
     // Update is called once per frame
@@ -46,15 +56,23 @@ public class touchCon : MonoBehaviour, IPointerClickHandler
                 btnName = Hit.transform.name;
                 switch (btnName)
                 {
-                    case "gem_17":
+                    case "mandible":
                         //myAudioSource.clip = aClips[0];
                         //myAudioSource.Play();
                         Hit.transform.GetComponent<Renderer>().material.color = Color.red;
                         journalImg.enabled = true;
                         cancelBut.enabled = true;
                         cancelBut.gameObject.SetActive(true);
-                        diamondTouched = true;
-                        Debug.Log("Touched diamond");
+                        diamondTouched[0] = true;
+                        Debug.Log("Touched mandible");
+                        break;
+                    case "condyle":
+                        Hit.transform.GetComponent<Renderer>().material.color = Color.red;
+                        journalImg.enabled = true;
+                        cancelBut.enabled = true;
+                        cancelBut.gameObject.SetActive(true);
+                        diamondTouched[1] = true;
+                        Debug.Log("Touched condyle ");
                         break;
                     default:
                         break;
@@ -66,20 +84,26 @@ public class touchCon : MonoBehaviour, IPointerClickHandler
     // Update is called once per frame
     void OnGUI()
     {
-        if (diamondTouched)
+        for (int i=0; i<txtFiles.Length; i++)
         {
-            style.fontSize = 30;
-            style.wordWrap = true;
-            GUILayout.BeginArea(new Rect(Screen.width / 2 + 25, 100, Screen.width / 2 - 125, Screen.height - 75));
-            GUILayout.Label(txtContents, style);
-            GUILayout.EndArea();
+            if (diamondTouched[i])
+            {
+                style.fontSize = 30;
+                style.wordWrap = true;
+                GUILayout.BeginArea(new Rect(Screen.width / 2 + 25, 100, Screen.width / 2 - 125, Screen.height - 75));
+                GUILayout.Label(txtContents[i], style);
+                GUILayout.EndArea();
+            }
+            if (showIntro)
+            {
+                style.fontSize = 30;
+                style.wordWrap = true;
+                GUILayout.BeginArea(new Rect(Screen.width / 2 + 25, 100, Screen.width / 2 - 125, Screen.height - 75));
+                GUILayout.Label(introText, style);
+                GUILayout.EndArea();
+            }
         }
-    }
-
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        journalImg.enabled = false;   
-        
+       
     }
 
     void TaskOnClick()
@@ -87,7 +111,12 @@ public class touchCon : MonoBehaviour, IPointerClickHandler
         cancelBut.gameObject.SetActive(false);
         cancelBut.enabled = false;
         journalImg.enabled = false;
-        diamondTouched = false;
+        for (int i=0; i<txtFiles.Length; i++)
+        {
+            diamondTouched[i] = false;
+        }
+        showIntro = false;
+        
     }
 
 }

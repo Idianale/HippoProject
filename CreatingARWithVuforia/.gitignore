@@ -1,0 +1,12 @@
+# Compiled source #
+###################
+*.info
+*.meta
+*.bin
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+
+/Library/metadata/*

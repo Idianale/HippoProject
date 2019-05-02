@@ -1,11 +1,13 @@
 Introduction 
 
-[Swahili] "Kuanzisha Hali ya Kiingereza" / "Initiating English Mode"
+“ Kuanzisha Hali ya Kiingereza”  
+“Initiating English Mode “ 
 
-Hello Detective. Last night at approximately 18:00 hours rangers found the partial remains of a deceased animal near the Galana River. Evidence points to it being one of the missing hippopotamus herd from the Kenyan Nana Miriam Wildlife Refuge. At 20:00 a sweep of the area recovered another animal but extensive damage to the artifact required the scanning and manufacture of a scanned and scaled model. 
+Hello Detective, Last night near the Galana River the partial remains of an animal believed to be one of the missing hippopotamus herds from the Kenyan Nana Miriam Wildlife Refuge. 
+
+I am Jin one of the refuge’s assistive agent. I am networked to the Refuge’s database. By combining your keen deductive skills and my informational analysis we can piece together who this animal is. 
 
 Touch the highlighted portions of the artifact to see a preliminary report of my initial findings.
+Additional Information is also provided 
 
-Additional Information is also provided.
-
-You have been given permission and are highly encouraged to visually inspect the artifact as you comb through the report.
+You have been given permission and highly encouraged to visually inspect the artifact as you comb through the report 

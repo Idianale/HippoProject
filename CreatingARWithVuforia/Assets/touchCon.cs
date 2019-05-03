@@ -13,8 +13,18 @@ public class touchCon : MonoBehaviour
     public Material[] materials;
     [SerializeField] private Image journalImg;
     [SerializeField] private Button cancelBut;
+    [SerializeField] private Image mandibleImg;
+    [SerializeField] private Image condyleImg;
+    [SerializeField] private Image coronoidImg;
+    [SerializeField] private Image molarsImg;
+    [SerializeField] private Image premolarsImg;
+    [SerializeField] private Image foraminaImg;
+    [SerializeField] private Image caninesImg;
+    [SerializeField] private Image caninesImg2;
+    [SerializeField] private Image incisorImg;
     public string[] otherFiles = {"intro", "secondary_scans", "missing_hippo_profiles", "possible_deaths" };
     public string[] txtFiles = { "whole_bottom_jaw_mandible", "condyle", "coronoid_process", "molars", "pre_molars", "foramina", "canines", "incisor" };
+    
     string[] txtContents = new string[8];
     string introText;
     // Start is called before the first frame update
@@ -28,6 +38,15 @@ public class touchCon : MonoBehaviour
         myAudioSource = GetComponent<AudioSource>();
         journalImg.enabled = true;
         cancelBut.enabled = true;
+        mandibleImg.enabled = false;
+        condyleImg.enabled = false;
+        coronoidImg.enabled = false;
+        molarsImg.enabled = false;
+        premolarsImg.enabled = false;
+        foraminaImg.enabled = false;
+        caninesImg.enabled = false;
+        caninesImg2.enabled = false;
+        incisorImg.enabled = false;
         cancelBut.gameObject.SetActive(true);
         cancelBut.onClick.AddListener(TaskOnClick);
 
@@ -41,12 +60,23 @@ public class touchCon : MonoBehaviour
             txtContents[i] = txtAssets.text;
             diamondTouched[i] = false; 
         }
-        
+
+        if (showIntro)
+        {
+            //Play ambient jungle sounds on start-up
+            myAudioSource.clip = aClips[1];
+            myAudioSource.Play();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!showIntro)
+        {
+            myAudioSource.Stop();
+        }
+        
         if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
         {
             Debug.Log("Touched screen!");
@@ -57,21 +87,47 @@ public class touchCon : MonoBehaviour
                 switch (btnName)
                 {
                     case "mandible":
-                        //myAudioSource.clip = aClips[0];
-                        //myAudioSource.Play();
+                        myAudioSource.clip = aClips[0];
+                        myAudioSource.Play();
                         Hit.transform.GetComponent<Renderer>().material.color = Color.red;
                         journalImg.enabled = true;
                         cancelBut.enabled = true;
+                        mandibleImg.enabled = true;
                         cancelBut.gameObject.SetActive(true);
                         diamondTouched[0] = true;
                         Debug.Log("Touched mandible");
                         break;
                     case "condyle":
+                        myAudioSource.clip = aClips[0];
+                        myAudioSource.Play();
                         Hit.transform.GetComponent<Renderer>().material.color = Color.red;
                         journalImg.enabled = true;
                         cancelBut.enabled = true;
+                        condyleImg.enabled = true;
                         cancelBut.gameObject.SetActive(true);
                         diamondTouched[1] = true;
+                        Debug.Log("Touched condyle");
+                        break;
+                    case "coronoid_process":
+                        myAudioSource.clip = aClips[0];
+                        myAudioSource.Play();
+                        Hit.transform.GetComponent<Renderer>().material.color = Color.red;
+                        journalImg.enabled = true;
+                        cancelBut.enabled = true;
+                        coronoidImg.enabled = true;
+                        cancelBut.gameObject.SetActive(true);
+                        diamondTouched[2] = true;
+                        Debug.Log("Touched coronoid process");
+                        break;
+                    case "molars":
+                        myAudioSource.clip = aClips[0];
+                        myAudioSource.Play();
+                        Hit.transform.GetComponent<Renderer>().material.color = Color.red;
+                        journalImg.enabled = true;
+                        cancelBut.enabled = true;
+                        molarsImg.enabled = true;
+                        cancelBut.gameObject.SetActive(true);
+                        diamondTouched[3] = true;
                         Debug.Log("Touched condyle ");
                         break;
                     default:
